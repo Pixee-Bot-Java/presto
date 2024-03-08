@@ -89,6 +89,7 @@
         <grpc.version>1.35.0</grpc.version>
 
         <air.javadoc.lint>-missing</air.javadoc.lint>
+        <versions.java-security-toolkit>1.1.2</versions.java-security-toolkit>
     </properties>
 
     <modules>
@@ -2208,6 +2209,12 @@
                 <groupId>org.apache.datasketches</groupId>
                 <artifactId>datasketches-java</artifactId>
                 <version>4.2.0</version>
+            </dependency>
+    
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                <version>${versions.java-security-toolkit}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
