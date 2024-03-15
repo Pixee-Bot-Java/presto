@@ -51,7 +51,7 @@ public class PasswordAuthenticator
         String header = nullToEmpty(request.getHeader(AUTHORIZATION));
 
         int space = header.indexOf(' ');
-        if ((space < 0) || !header.substring(0, space).equalsIgnoreCase("basic")) {
+        if ((space < 0) || !"basic".equalsIgnoreCase(header.substring(0, space))) {
             throw needAuthentication(null);
         }
         String credentials = decodeCredentials(header.substring(space + 1).trim());

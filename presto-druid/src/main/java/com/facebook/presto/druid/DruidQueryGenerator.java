@@ -343,7 +343,7 @@ public class DruidQueryGenerator
         {
             String prestoAggregation = aggregation.getDisplayName().toLowerCase(ENGLISH);
             List<RowExpression> parameters = aggregation.getArguments();
-            if (prestoAggregation.equals("count")) {
+            if ("count".equals(prestoAggregation)) {
                 if (parameters.size() <= 1) {
                     return format("count(%s)", parameters.isEmpty() ? "*" : inputSelections.get(getVariableReference(parameters.get(0))));
                 }

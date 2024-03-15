@@ -112,7 +112,7 @@ public class DruidBrokerPageSource
 
         long start = System.nanoTime();
         boolean columnHandlesHasErrorMessageField = columnHandles.stream().anyMatch(
-                handle -> ((DruidColumnHandle) handle).getColumnName().equals("errorMessage"));
+                handle -> "errorMessage".equals(((DruidColumnHandle) handle).getColumnName()));
         try {
             String readLine;
             while ((readLine = responseStream.readLine()) != null) {

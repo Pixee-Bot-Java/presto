@@ -347,7 +347,7 @@ public class DeltaPageSourceProvider
                 throw new PrestoException(DELTA_CANNOT_OPEN_SPLIT, exception);
             }
             String message = format("Error opening Hive split %s (offset=%s, length=%s): %s", path, start, length, exception.getMessage());
-            if (exception.getClass().getSimpleName().equals("BlockMissingException")) {
+            if ("BlockMissingException".equals(exception.getClass().getSimpleName())) {
                 throw new PrestoException(DELTA_MISSING_DATA, message, exception);
             }
             throw new PrestoException(DELTA_CANNOT_OPEN_SPLIT, message, exception);

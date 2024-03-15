@@ -1010,7 +1010,7 @@ public class MetastoreUtil
     public static boolean isDeltaLakeTable(Map<String, String> tableParameters)
     {
         return tableParameters.containsKey(SPARK_TABLE_PROVIDER_KEY)
-                && tableParameters.get(SPARK_TABLE_PROVIDER_KEY).toLowerCase(ENGLISH).equals(DELTA_LAKE_PROVIDER);
+                && DELTA_LAKE_PROVIDER.equals(tableParameters.get(SPARK_TABLE_PROVIDER_KEY).toLowerCase(ENGLISH));
     }
 
     public static boolean isIcebergTable(Table table)

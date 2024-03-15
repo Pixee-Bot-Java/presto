@@ -216,7 +216,7 @@ public class ClickHouseComputePushdown
                         // Determine whether the node is an avg function. The avg function currently does not support pushdown.
                         // Regarding the calculation of the average function, the value calculated by the two-layer aggregation
                         // is not equal to the value calculated directly
-                        if (pushedDownPlan.get().getOutputVariables().get(variableIndex).getName().substring(0, 3).equals(NOT_PUSHDOWN_FUNCTION_NAME)) {
+                        if (NOT_PUSHDOWN_FUNCTION_NAME.equals(pushedDownPlan.get().getOutputVariables().get(variableIndex).getName().substring(0, 3))) {
                             hasAvg = true;
                             break;
                         }

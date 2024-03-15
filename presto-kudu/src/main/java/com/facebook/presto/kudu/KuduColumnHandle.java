@@ -72,7 +72,7 @@ public class KuduColumnHandle
 
     public boolean isVirtualRowId()
     {
-        return name.equals(ROW_ID);
+        return ROW_ID.equals(name);
     }
 
     @Override

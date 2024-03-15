@@ -91,7 +91,7 @@ public final class DynamicFilters
         CallExpression call = (CallExpression) expression;
         List<RowExpression> arguments = call.getArguments();
 
-        if (!call.getDisplayName().equals(DynamicFilterPlaceholderFunction.NAME)) {
+        if (!DynamicFilterPlaceholderFunction.NAME.equals(call.getDisplayName())) {
             return Optional.empty();
         }
 

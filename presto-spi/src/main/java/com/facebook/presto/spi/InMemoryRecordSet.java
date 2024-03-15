@@ -232,11 +232,11 @@ public class InMemoryRecordSet
                     checkArgument(value instanceof Slice,
                             "Expected value %d to be an instance of Slice, but is a %s", i, value.getClass().getSimpleName());
                 }
-                else if (type.getTypeSignature().getBase().equals("array")) {
+                else if ("array".equals(type.getTypeSignature().getBase())) {
                     checkArgument(value instanceof Block,
                             "Expected value %d to be an instance of Block, but is a %s", i, value.getClass().getSimpleName());
                 }
-                else if (type.getTypeSignature().getBase().equals("row")) {
+                else if ("row".equals(type.getTypeSignature().getBase())) {
                     checkArgument(value instanceof Block,
                             "Expected value %d to be an instance of Block, but is a %s", i, value.getClass().getSimpleName());
                 }

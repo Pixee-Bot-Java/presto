@@ -206,7 +206,7 @@ public class NativeExecutionProcess
     private static long getPid(Process p)
     {
         try {
-            if (p.getClass().getName().equals("java.lang.UNIXProcess")) {
+            if ("java.lang.UNIXProcess".equals(p.getClass().getName())) {
                 Field f = p.getClass().getDeclaredField("pid");
                 f.setAccessible(true);
                 long pid = f.getLong(p);
@@ -393,7 +393,7 @@ public class NativeExecutionProcess
         boolean etcDirSet = false;
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
-            if (arg.equals("--etc_dir")) {
+            if ("--etc_dir".equals(arg)) {
                 etcDirSet = true;
                 configPath = argsList.get(i + 1);
                 break;

@@ -301,7 +301,7 @@ public class OrcBatchPageSourceFactory
                 throw (PrestoException) e;
             }
             String message = splitError(e, fileSplit);
-            if (e.getClass().getSimpleName().equals("BlockMissingException")) {
+            if ("BlockMissingException".equals(e.getClass().getSimpleName())) {
                 throw new PrestoException(HIVE_MISSING_DATA, message, e);
             }
             throw new PrestoException(HIVE_CANNOT_OPEN_SPLIT, message, e);

@@ -55,10 +55,10 @@ public class VerboseOptimizerResultsProperty
 
     public static VerboseOptimizerResultsProperty valueOf(String value)
     {
-        if (value.equalsIgnoreCase("none")) {
+        if ("none".equalsIgnoreCase(value)) {
             return disabled();
         }
-        if (value.equalsIgnoreCase("all")) {
+        if ("all".equalsIgnoreCase(value)) {
             return new VerboseOptimizerResultsProperty(true, true, new ArrayList<>());
         }
 

@@ -1293,7 +1293,7 @@ class QueryPlanner
             return subPlan;
         }
 
-        if (!limit.get().equalsIgnoreCase("all")) {
+        if (!"all".equalsIgnoreCase(limit.get())) {
             long limitValue = Long.parseLong(limit.get());
             subPlan = subPlan.withNewRoot(new LimitNode(subPlan.getRoot().getSourceLocation(), idAllocator.getNextId(), subPlan.getRoot(), limitValue, FINAL));
         }

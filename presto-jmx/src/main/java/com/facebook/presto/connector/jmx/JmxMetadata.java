@@ -100,10 +100,10 @@ public class JmxMetadata
     public JmxTableHandle getTableHandle(SchemaTableName tableName)
     {
         requireNonNull(tableName, "tableName is null");
-        if (tableName.getSchemaName().equals(JMX_SCHEMA_NAME)) {
+        if (JMX_SCHEMA_NAME.equals(tableName.getSchemaName())) {
             return getJmxTableHandle(tableName);
         }
-        else if (tableName.getSchemaName().equals(HISTORY_SCHEMA_NAME)) {
+        else if (HISTORY_SCHEMA_NAME.equals(tableName.getSchemaName())) {
             return getJmxHistoryTableHandle(tableName);
         }
         return null;
@@ -230,8 +230,8 @@ public class JmxMetadata
     {
         requireNonNull(prefix, "prefix is null");
         if (prefix.getSchemaName() != null &&
-                !prefix.getSchemaName().equals(JMX_SCHEMA_NAME) &&
-                !prefix.getSchemaName().equals(HISTORY_SCHEMA_NAME)) {
+                !JMX_SCHEMA_NAME.equals(prefix.getSchemaName()) &&
+                !HISTORY_SCHEMA_NAME.equals(prefix.getSchemaName())) {
             return ImmutableMap.of();
         }
 

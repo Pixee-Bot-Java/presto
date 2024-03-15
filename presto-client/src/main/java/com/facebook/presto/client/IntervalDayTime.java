@@ -74,7 +74,7 @@ public final class IntervalDayTime
 
     public static long parseMillis(String value)
     {
-        if (value.equals(LONG_MIN_VALUE)) {
+        if (LONG_MIN_VALUE.equals(value)) {
             return Long.MIN_VALUE;
         }
 

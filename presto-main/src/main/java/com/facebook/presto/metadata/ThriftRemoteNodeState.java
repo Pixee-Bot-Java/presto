@@ -47,7 +47,7 @@ public class ThriftRemoteNodeState
     public ThriftRemoteNodeState(DriftClient<ThriftServerInfoClient> thriftClient, URI stateInfoUri)
     {
         requireNonNull(stateInfoUri, "stateInfoUri is null");
-        checkState(stateInfoUri.getScheme().equals("thrift"), "unexpected scheme %s", stateInfoUri.getScheme());
+        checkState("thrift".equals(stateInfoUri.getScheme()), "unexpected scheme %s", stateInfoUri.getScheme());
 
         this.thriftClient = requireNonNull(thriftClient, "thriftClient is null").get(Optional.of(stateInfoUri.getAuthority()));
     }

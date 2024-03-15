@@ -196,7 +196,7 @@ public class PushDownFilterExpressionEvaluationThroughCrossJoin
         Set<RowExpression> rightRowExpression = new HashSet<>();
         for (RowExpression conjunct : extractConjuncts(filterPredicate)) {
             for (RowExpression disjunct : extractDisjuncts(conjunct)) {
-                if (disjunct instanceof CallExpression && ((CallExpression) disjunct).getDisplayName().equals("EQUAL")) {
+                if (disjunct instanceof CallExpression && "EQUAL".equals(((CallExpression) disjunct).getDisplayName())) {
                     CallExpression callExpression = (CallExpression) disjunct;
                     addCandidateExpression(callExpression.getArguments().get(0), left, right, leftRowExpression, rightRowExpression);
                     addCandidateExpression(callExpression.getArguments().get(1), left, right, leftRowExpression, rightRowExpression);

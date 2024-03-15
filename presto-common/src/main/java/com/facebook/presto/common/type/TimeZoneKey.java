@@ -207,7 +207,7 @@ public final class TimeZoneKey
 
     public static boolean isUtcZoneId(String zoneId)
     {
-        return normalizeZoneId(zoneId).equals("utc");
+        return "utc".equals(normalizeZoneId(zoneId));
     }
 
     private static String normalizeZoneId(String originalZoneId)
@@ -297,15 +297,15 @@ public final class TimeZoneKey
 
     private static boolean isUtcEquivalentName(String zoneId)
     {
-        return zoneId.equals("utc") ||
-                zoneId.equals("z") ||
-                zoneId.equals("ut") ||
-                zoneId.equals("uct") ||
-                zoneId.equals("gmt") ||
-                zoneId.equals("gmt0") ||
-                zoneId.equals("greenwich") ||
-                zoneId.equals("universal") ||
-                zoneId.equals("zulu");
+        return "utc".equals(zoneId) ||
+                "z".equals(zoneId) ||
+                "ut".equals(zoneId) ||
+                "uct".equals(zoneId) ||
+                "gmt".equals(zoneId) ||
+                "gmt0".equals(zoneId) ||
+                "greenwich".equals(zoneId) ||
+                "universal".equals(zoneId) ||
+                "zulu".equals(zoneId);
     }
 
     private static String zoneIdForOffset(long offset)

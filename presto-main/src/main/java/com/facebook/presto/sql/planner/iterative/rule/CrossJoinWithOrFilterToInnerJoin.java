@@ -132,7 +132,7 @@ public class CrossJoinWithOrFilterToInnerJoin
     // Valid only if it's an equal expression, and one argument from left of join and the other argument from right of join.
     private static boolean isValidExpression(RowExpression rowExpression, List<VariableReferenceExpression> leftInput, List<VariableReferenceExpression> rightInput)
     {
-        if (!(rowExpression instanceof CallExpression) || !((CallExpression) rowExpression).getDisplayName().equals("EQUAL")) {
+        if (!(rowExpression instanceof CallExpression) || !"EQUAL".equals(((CallExpression) rowExpression).getDisplayName())) {
             return false;
         }
         CallExpression callExpression = (CallExpression) rowExpression;
@@ -212,7 +212,7 @@ public class CrossJoinWithOrFilterToInnerJoin
 
     private VariableReferenceExpression getVariableInEqualComparison(RowExpression rowExpression, List<VariableReferenceExpression> candidate)
     {
-        checkArgument(rowExpression instanceof CallExpression && ((CallExpression) rowExpression).getDisplayName().equals("EQUAL"));
+        checkArgument(rowExpression instanceof CallExpression && "EQUAL".equals(((CallExpression) rowExpression).getDisplayName()));
         CallExpression callExpression = (CallExpression) rowExpression;
         RowExpression argument0 = callExpression.getArguments().get(0);
         RowExpression argument1 = callExpression.getArguments().get(1);

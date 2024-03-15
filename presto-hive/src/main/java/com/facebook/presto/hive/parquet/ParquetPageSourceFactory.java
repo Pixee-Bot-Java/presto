@@ -344,7 +344,7 @@ public class ParquetPageSourceFactory
                 throw new PrestoException(HIVE_CANNOT_OPEN_SPLIT, e);
             }
             String message = format("Error opening Hive split %s (offset=%s, length=%s): %s", path, fileSplit.getStart(), fileSplit.getLength(), e.getMessage());
-            if (e.getClass().getSimpleName().equals("BlockMissingException")) {
+            if ("BlockMissingException".equals(e.getClass().getSimpleName())) {
                 throw new PrestoException(HIVE_MISSING_DATA, message, e);
             }
             if (e instanceof HiddenColumnException) {

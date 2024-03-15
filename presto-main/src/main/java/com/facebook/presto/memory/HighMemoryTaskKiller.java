@@ -98,7 +98,7 @@ public class HighMemoryTaskKiller
         }
 
         for (GarbageCollectorMXBean mbean : ManagementFactory.getGarbageCollectorMXBeans()) {
-            if (mbean.getName().equals("TestingMBeanServer")) {
+            if ("TestingMBeanServer".equals(mbean.getName())) {
                 continue;
             }
 

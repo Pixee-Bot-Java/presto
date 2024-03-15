@@ -269,7 +269,7 @@ public class TestingPrestoServer
         this.preserveData = dataDirectory.isPresent();
 
         properties = new HashMap<>(properties);
-        this.nodeSchedulerIncludeCoordinator = (properties.getOrDefault("node-scheduler.include-coordinator", "true")).equals("true");
+        this.nodeSchedulerIncludeCoordinator = "true".equals((properties.getOrDefault("node-scheduler.include-coordinator", "true")));
         String coordinatorPort = properties.remove("http-server.http.port");
         if (coordinatorPort == null) {
             coordinatorPort = "0";

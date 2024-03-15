@@ -72,7 +72,7 @@ public class SimplifyCardinalityMapRewriter
         @Override
         public RowExpression rewriteCall(CallExpression node, Void context, RowExpressionTreeRewriter<Void> treeRewriter)
         {
-            if (node.getDisplayName().equals("cardinality") && node.getArguments().size() == 1) {
+            if ("cardinality".equals(node.getDisplayName()) && node.getArguments().size() == 1) {
                 RowExpression argument = getOnlyElement(node.getArguments());
                 if (argument instanceof CallExpression) {
                     CallExpression callExpression = (CallExpression) argument;

@@ -180,7 +180,7 @@ public final class ClickHouseColumnHandle
         if (type == BOOLEAN) {
             return new ClickHouseTypeHandle(Types.BOOLEAN, Optional.of("boolean"), 1, 0, Optional.empty(), Optional.empty());
         }
-        if (type.getTypeSignature().getBase().equals("row")) {
+        if ("row".equals(type.getTypeSignature().getBase())) {
             return new ClickHouseTypeHandle(Types.DOUBLE, Optional.of("double precision"), 32, 4, Optional.empty(), Optional.empty());
         }
         if (type == TINYINT) {

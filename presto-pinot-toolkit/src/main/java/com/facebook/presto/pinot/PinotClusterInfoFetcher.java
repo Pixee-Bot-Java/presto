@@ -519,7 +519,7 @@ public class PinotClusterInfoFetcher
                  *     Unexpected response status: 404 for request  to url http://127.0.0.1:8000/debug/timeBoundary/baseballStats, with headers ...
                  */
                 String[] errorMessageSplits = e.getMessage().split(" ");
-                if (errorMessageSplits.length >= 4 && errorMessageSplits[3].equalsIgnoreCase(TIME_BOUNDARY_NOT_FOUND_ERROR_CODE)) {
+                if (errorMessageSplits.length >= 4 && TIME_BOUNDARY_NOT_FOUND_ERROR_CODE.equalsIgnoreCase(errorMessageSplits[3])) {
                     return timeBoundaryJsonCodec.fromJson("{}");
                 }
             }

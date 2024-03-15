@@ -96,7 +96,7 @@ public class BigQueryMetadata
 
     private List<SchemaTableName> listTablesWithTypes(ConnectorSession session, Optional<String> schemaName, TableDefinition.Type... types)
     {
-        if (schemaName.isPresent() && schemaName.get().equalsIgnoreCase(INFORMATION_SCHEMA)) {
+        if (schemaName.isPresent() && INFORMATION_SCHEMA.equalsIgnoreCase(schemaName.get())) {
             return ImmutableList.of();
         }
         Set<String> schemaNames = schemaName.map(ImmutableSet::of)

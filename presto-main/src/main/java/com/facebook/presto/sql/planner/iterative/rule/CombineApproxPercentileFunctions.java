@@ -89,7 +89,7 @@ public class CombineApproxPercentileFunctions
     private static boolean hasMultipleApproxPercentile(AggregationNode aggregation)
     {
         return aggregation.getAggregations().values().stream()
-                .filter(agg -> agg.getCall().getDisplayName().equals(APPROX_PERCENTILE)).count() > 1;
+                .filter(agg -> APPROX_PERCENTILE.equals(agg.getCall().getDisplayName())).count() > 1;
     }
 
     @Override
@@ -223,7 +223,7 @@ public class CombineApproxPercentileFunctions
 
         // Only approx_percentile which does not take array as percentile arguments
         List<AggregationNode.Aggregation> approxPercentile = aggregationNode.getAggregations().values().stream().filter(
-                x -> x.getCall().getDisplayName().equals(APPROX_PERCENTILE) && !(x.getCall().getType() instanceof ArrayType)
+                x -> APPROX_PERCENTILE.equals(x.getCall().getDisplayName()) && !(x.getCall().getType() instanceof ArrayType)
         ).collect(Collectors.toList());
 
         // Remove aggregations which occurs more than once, as we assumes that there are no duplicates in later stage

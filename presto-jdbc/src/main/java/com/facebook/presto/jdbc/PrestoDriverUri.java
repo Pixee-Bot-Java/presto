@@ -237,7 +237,7 @@ final class PrestoDriverUri
 
             // TODO: fix Tempto to allow empty passwords
             String password = PASSWORD.getValue(properties).orElse("");
-            if (!password.isEmpty() && !password.equals("***empty***")) {
+            if (!password.isEmpty() && !"***empty***".equals(password)) {
                 if (!useSecureConnection) {
                     throw new SQLException("Authentication using username/password requires SSL to be enabled");
                 }
@@ -342,7 +342,7 @@ final class PrestoDriverUri
             throws SQLException
     {
         String path = uri.getPath();
-        if (isNullOrEmpty(uri.getPath()) || path.equals("/")) {
+        if (isNullOrEmpty(uri.getPath()) || "/".equals(path)) {
             return;
         }
 

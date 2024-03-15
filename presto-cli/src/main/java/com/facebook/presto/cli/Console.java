@@ -250,7 +250,7 @@ public class Console
                 StatementSplitter splitter = new StatementSplitter(sql, ImmutableSet.of(";", "\\G"));
                 for (Statement split : splitter.getCompleteStatements()) {
                     OutputFormat outputFormat = OutputFormat.ALIGNED;
-                    if (split.terminator().equals("\\G")) {
+                    if ("\\G".equals(split.terminator())) {
                         outputFormat = OutputFormat.VERTICAL;
                     }
 

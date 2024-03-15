@@ -91,7 +91,7 @@ public class PrometheusClient
     {
         requireNonNull(schema, "schema is null");
         String status = "";
-        if (schema.equals("default")) {
+        if ("default".equals(schema)) {
             if (!tableSupplier.get().isEmpty()) {
                 Object tableSupplierStatus = tableSupplier.get().get("status");
                 if (tableSupplierStatus instanceof String) {
@@ -100,7 +100,7 @@ public class PrometheusClient
             }
 
             //TODO prometheus warnings (success|error|warning) could be handled separately
-            if (status.equals("success")) {
+            if ("success".equals(status)) {
                 List<String> tableNames = (List<String>) tableSupplier.get().get("data");
                 if (tableNames == null) {
                     return ImmutableSet.of();
@@ -108,7 +108,7 @@ public class PrometheusClient
                 return ImmutableSet.copyOf(tableNames);
             }
             else {
-                if (status.equals("warning")) {
+                if ("warning".equals(status)) {
                     log.warn("Prometheus client gets a warning by retrieving table name from metric list");
                 }
             }
@@ -120,7 +120,7 @@ public class PrometheusClient
     {
         requireNonNull(schema, "schema is null");
         requireNonNull(tableName, "tableName is null");
-        if (!schema.equals("default")) {
+        if (!"default".equals(schema)) {
             return null;
         }
 

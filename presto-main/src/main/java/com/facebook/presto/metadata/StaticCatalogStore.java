@@ -110,7 +110,7 @@ public class StaticCatalogStore
         String connectorName = null;
         ImmutableMap.Builder<String, String> connectorProperties = ImmutableMap.builder();
         for (Entry<String, String> entry : properties.entrySet()) {
-            if (entry.getKey().equals("connector.name")) {
+            if ("connector.name".equals(entry.getKey())) {
                 connectorName = entry.getValue();
             }
             else {

@@ -60,8 +60,8 @@ public class RedisProviderPlugin
             log.info("Redis Provider Plugin returned an empty instance");
             return ImmutableList.of(EmptyPlanStatisticsProvider.getInstance());
         }
-        if (!(propertyMap.getOrDefault(RedisProviderConfig.COORDINATOR_PROPERTY_NAME, "false").equals("true") &&
-                propertyMap.getOrDefault(RedisProviderConfig.HBO_PROVIDER_ENABLED_NAME, "false").equals("true"))) {
+        if (!("true".equals(propertyMap.getOrDefault(RedisProviderConfig.COORDINATOR_PROPERTY_NAME, "false")) &&
+                "true".equals(propertyMap.getOrDefault(RedisProviderConfig.HBO_PROVIDER_ENABLED_NAME, "false")))) {
             return ImmutableList.of(EmptyPlanStatisticsProvider.getInstance());
         }
         injector = RedisProviderInjectorFactory.create(propertyMap);

@@ -72,8 +72,8 @@ public class SingleStoreClient
             while (resultSet.next()) {
                 String schemaName = resultSet.getString("TABLE_CAT");
                 // skip internal schemas
-                if (!schemaName.equalsIgnoreCase("information_schema") && !schemaName.equalsIgnoreCase("memsql")
-                        && !schemaName.equalsIgnoreCase("cluster")) {
+                if (!"information_schema".equalsIgnoreCase(schemaName) && !"memsql".equalsIgnoreCase(schemaName)
+                        && !"cluster".equalsIgnoreCase(schemaName)) {
                     schemaNames.add(schemaName);
                 }
             }

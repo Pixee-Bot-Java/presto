@@ -423,7 +423,7 @@ public class LambdaBytecodeGenerator
         checkCondition(lambdaFunctionInterface.isAnnotationPresent(FunctionalInterface.class), COMPILER_ERROR, "Lambda function interface is required to be annotated with FunctionalInterface");
 
         List<Method> applyMethods = Arrays.stream(lambdaFunctionInterface.getMethods())
-                .filter(method -> method.getName().equals("apply"))
+                .filter(method -> "apply".equals(method.getName()))
                 .collect(toImmutableList());
 
         checkCondition(applyMethods.size() == 1, COMPILER_ERROR, "Expect to have exactly 1 method with name 'apply' in interface " + lambdaFunctionInterface.getName());

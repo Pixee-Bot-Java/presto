@@ -215,7 +215,7 @@ public class PrestoServer
             if (serverConfig.isCoordinator() && !schedulerConfig.isIncludeCoordinator()) {
                 catalogs.stream()
                         .map(Catalog::getConnectorId)
-                        .filter(connectorId -> connectorId.getCatalogName().equals("jmx"))
+                        .filter(connectorId -> "jmx".equals(connectorId.getCatalogName()))
                         .map(Object::toString)
                         .forEach(connectorIds::add);
             }
@@ -230,7 +230,7 @@ public class PrestoServer
         // build announcement with updated sources
         ServiceAnnouncementBuilder builder = serviceAnnouncement(announcement.getType());
         for (Map.Entry<String, String> entry : announcement.getProperties().entrySet()) {
-            if (!entry.getKey().equals("connectorIds")) {
+            if (!"connectorIds".equals(entry.getKey())) {
                 builder.addProperty(entry.getKey(), entry.getValue());
             }
         }

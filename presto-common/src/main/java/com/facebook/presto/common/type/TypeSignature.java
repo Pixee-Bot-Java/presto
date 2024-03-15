@@ -157,7 +157,7 @@ public class TypeSignature
 
     public boolean isFunction()
     {
-        return base.getStandardTypeBase().equals("function");
+        return "function".equals(base.getStandardTypeBase());
     }
 
     public boolean isBigintEnum()
@@ -293,7 +293,7 @@ public class TypeSignature
 
         private static Optional<QualifiedObjectName> parseParentName(String s)
         {
-            return s.equals("null") ? Optional.empty() : Optional.of(QualifiedObjectName.valueOf(s));
+            return "null".equals(s) ? Optional.empty() : Optional.of(QualifiedObjectName.valueOf(s));
         }
 
         private static DistinctTypeParsingData parse(String signature, int startIndex)

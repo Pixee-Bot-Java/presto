@@ -120,7 +120,7 @@ public class TypesJdbcTable
             String typeName = type.getName();
             builder.addRow(
                     typeName,
-                    typeName.equalsIgnoreCase("array") ? Types.ARRAY : Types.JAVA_OBJECT,
+                    "array".equalsIgnoreCase(typeName) ? Types.ARRAY : Types.JAVA_OBJECT,
                     null,
                     null,
                     null,

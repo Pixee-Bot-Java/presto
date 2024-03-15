@@ -63,7 +63,7 @@ public final class CassandraCqlUtils
 
     public static String validColumnName(String identifier)
     {
-        if (identifier.isEmpty() || identifier.equals(EMPTY_COLUMN_NAME)) {
+        if (identifier.isEmpty() || EMPTY_COLUMN_NAME.equals(identifier)) {
             return "\"\"";
         }
 
@@ -125,7 +125,7 @@ public final class CassandraCqlUtils
 
     public static String sqlNameToCqlName(String name)
     {
-        if (name.equals(EMPTY_COLUMN_NAME)) {
+        if (EMPTY_COLUMN_NAME.equals(name)) {
             return "";
         }
         return name;

@@ -194,12 +194,12 @@ public class ProxyResource
         setupBearerToken(servletRequest, requestBuilder);
 
         for (String name : list(servletRequest.getHeaderNames())) {
-            if (isPrestoHeader(name) || name.equalsIgnoreCase(COOKIE)) {
+            if (isPrestoHeader(name) || COOKIE.equalsIgnoreCase(name)) {
                 for (String value : list(servletRequest.getHeaders(name))) {
                     requestBuilder.addHeader(name, value);
                 }
             }
-            else if (name.equalsIgnoreCase(USER_AGENT)) {
+            else if (USER_AGENT.equalsIgnoreCase(name)) {
                 for (String value : list(servletRequest.getHeaders(name))) {
                     requestBuilder.addHeader(name, "[Presto Proxy] " + value);
                 }
@@ -298,7 +298,7 @@ public class ProxyResource
     {
         response.getHeaders().forEach((headerName, value) -> {
             String name = headerName.toString();
-            if (isPrestoHeader(name) || name.equalsIgnoreCase(SET_COOKIE)) {
+            if (isPrestoHeader(name) || SET_COOKIE.equalsIgnoreCase(name)) {
                 builder.header(name, value);
             }
         });

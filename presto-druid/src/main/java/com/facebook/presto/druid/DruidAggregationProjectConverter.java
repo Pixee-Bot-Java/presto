@@ -106,7 +106,7 @@ public class DruidAggregationProjectConverter
         String inputFormat;
 
         CallExpression timeConversion = getExpressionAsFunction(timeInputParameter, timeInputParameter);
-        if (!timeConversion.getDisplayName().toLowerCase(ENGLISH).equals(FROM_UNIXTIME)) {
+        if (!FROM_UNIXTIME.equals(timeConversion.getDisplayName().toLowerCase(ENGLISH))) {
             throw new PrestoException(DRUID_PUSHDOWN_UNSUPPORTED_EXPRESSION, "Unsupported time function: " + timeConversion.getDisplayName() + " to pushdown for Druid connector.");
         }
 
@@ -148,7 +148,7 @@ public class DruidAggregationProjectConverter
             CallExpression function,
             Map<VariableReferenceExpression, DruidQueryGeneratorContext.Selection> context)
     {
-        if (function.getDisplayName().toLowerCase(ENGLISH).equals(DATE_TRUNC)) {
+        if (DATE_TRUNC.equals(function.getDisplayName().toLowerCase(ENGLISH))) {
             return handleDateTruncationViaDateTruncation(function, context);
         }
         throw new PrestoException(DRUID_PUSHDOWN_UNSUPPORTED_EXPRESSION, "Unsupported function: " + function.getDisplayName() + " to pushdown for Druid connector.");

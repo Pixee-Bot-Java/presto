@@ -505,7 +505,7 @@ public final class HiveUtil
 
         // for collection delimiter, Hive 1.x, 2.x uses "colelction.delim" but Hive 3.x uses "collection.delim"
         // see also https://issues.apache.org/jira/browse/HIVE-16922
-        if (name.equals("org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe")) {
+        if ("org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe".equals(name)) {
             if (schema.containsKey("colelction.delim") && !schema.containsKey(COLLECTION_DELIM)) {
                 schema.put(COLLECTION_DELIM, schema.getProperty("colelction.delim"));
             }
@@ -803,10 +803,10 @@ public final class HiveUtil
 
     public static boolean booleanPartitionKey(String value, String name)
     {
-        if (value.equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(value)) {
             return true;
         }
-        if (value.equalsIgnoreCase("false")) {
+        if ("false".equalsIgnoreCase(value)) {
             return false;
         }
         throw new PrestoException(HIVE_INVALID_PARTITION_VALUE, format("Invalid partition value '%s' for BOOLEAN partition key: %s", value, name));
@@ -1215,7 +1215,7 @@ public final class HiveUtil
     {
         List<TypeSignatureParameter> parameters = typeSignature.getParameters();
 
-        if (typeSignature.getBase().equals("unknown")) {
+        if ("unknown".equals(typeSignature.getBase())) {
             return new TypeSignature(StandardTypes.BOOLEAN);
         }
 

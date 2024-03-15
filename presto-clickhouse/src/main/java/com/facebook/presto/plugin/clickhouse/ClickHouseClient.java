@@ -302,7 +302,7 @@ public class ClickHouseClient
             while (resultSet.next()) {
                 String schemaName = resultSet.getString("TABLE_SCHEM");
                 // skip internal schemas
-                if (!schemaName.equalsIgnoreCase("information_schema")) {
+                if (!"information_schema".equalsIgnoreCase(schemaName)) {
                     schemaNames.add(schemaName);
                 }
             }
@@ -378,8 +378,8 @@ public class ClickHouseClient
         requireNonNull(name, "name is null");
         requireNonNull(escape, "escape is null");
         checkArgument(!escape.isEmpty(), "Escape string must not be empty");
-        checkArgument(!escape.equals("_"), "Escape string must not be '_'");
-        checkArgument(!escape.equals("%"), "Escape string must not be '%'");
+        checkArgument(!"_".equals(escape), "Escape string must not be '_'");
+        checkArgument(!"%".equals(escape), "Escape string must not be '%'");
         name = name.replace(escape, escape + escape);
         name = name.replace("_", escape + "_");
         name = name.replace("%", escape + "%");

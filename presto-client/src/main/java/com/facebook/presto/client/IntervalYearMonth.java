@@ -56,7 +56,7 @@ public final class IntervalYearMonth
 
     public static int parseMonths(String value)
     {
-        if (value.equals(INT_MIN_VALUE)) {
+        if (INT_MIN_VALUE.equals(value)) {
             return Integer.MIN_VALUE;
         }
 

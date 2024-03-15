@@ -102,7 +102,7 @@ public class MySqlClient
             while (resultSet.next()) {
                 String schemaName = resultSet.getString("TABLE_CAT");
                 // skip internal schemas
-                if (!schemaName.equalsIgnoreCase("information_schema") && !schemaName.equalsIgnoreCase("mysql")) {
+                if (!"information_schema".equalsIgnoreCase(schemaName) && !"mysql".equalsIgnoreCase(schemaName)) {
                     schemaNames.add(schemaName);
                 }
             }

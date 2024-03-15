@@ -278,7 +278,7 @@ public class RedisRecordCursor
 
             if (redisJedisManager.getRedisConnectorConfig().isKeyPrefixSchemaTable()) {
                 String keyMatch = "";
-                if (!split.getSchemaName().equals("default")) {
+                if (!"default".equals(split.getSchemaName())) {
                     keyMatch = split.getSchemaName() + Character.toString(redisJedisManager.getRedisConnectorConfig().getRedisKeyDelimiter());
                 }
                 keyMatch = keyMatch + split.getTableName() + Character.toString(redisJedisManager.getRedisConnectorConfig().getRedisKeyDelimiter()) + "*";

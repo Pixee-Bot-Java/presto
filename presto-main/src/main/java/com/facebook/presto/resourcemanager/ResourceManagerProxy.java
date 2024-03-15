@@ -104,12 +104,12 @@ public class ResourceManagerProxy
                 .setBodyGenerator(bodyGenerator);
 
         for (String name : list(servletRequest.getHeaderNames())) {
-            if (isPrestoHeader(name) || name.equalsIgnoreCase(COOKIE)) {
+            if (isPrestoHeader(name) || COOKIE.equalsIgnoreCase(name)) {
                 for (String value : list(servletRequest.getHeaders(name))) {
                     requestBuilder.addHeader(name, value);
                 }
             }
-            else if (name.equalsIgnoreCase(USER_AGENT)) {
+            else if (USER_AGENT.equalsIgnoreCase(name)) {
                 for (String value : list(servletRequest.getHeaders(name))) {
                     requestBuilder.addHeader(name, "[Resource Manager] " + value);
                 }

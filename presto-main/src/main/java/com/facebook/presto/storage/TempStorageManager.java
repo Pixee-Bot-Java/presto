@@ -136,7 +136,7 @@ public class TempStorageManager
         String tempStorageFactoryName = null;
         ImmutableMap.Builder<String, String> tempStorageProperties = ImmutableMap.builder();
         for (Map.Entry<String, String> entry : properties.entrySet()) {
-            if (entry.getKey().equals(TEMP_STORAGE_FACTORY_NAME)) {
+            if (TEMP_STORAGE_FACTORY_NAME.equals(entry.getKey())) {
                 tempStorageFactoryName = entry.getValue();
             }
             else {

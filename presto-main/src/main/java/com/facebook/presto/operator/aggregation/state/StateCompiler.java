@@ -603,7 +603,7 @@ public class StateCompiler
         final Set<Class<?>> primitiveClasses = ImmutableSet.of(byte.class, boolean.class, long.class, double.class, int.class);
         Set<Class<?>> supportedClasses = getSupportedFieldTypes();
         for (Method method : clazz.getMethods()) {
-            if (method.getName().equals("getEstimatedSize")) {
+            if ("getEstimatedSize".equals(method.getName())) {
                 continue;
             }
             if (method.getName().startsWith("get")) {
@@ -684,7 +684,7 @@ public class StateCompiler
                 continue;
             }
 
-            if (method.getName().equals("getEstimatedSize")) {
+            if ("getEstimatedSize".equals(method.getName())) {
                 checkArgument(method.getReturnType().equals(long.class), "getEstimatedSize must return long");
                 checkArgument(method.getParameterTypes().length == 0, "getEstimatedSize may not have parameters");
                 continue;

@@ -144,7 +144,7 @@ public class DeltaTypeUtils
 
         try {
             if (type.equals(BOOLEAN)) {
-                checkArgument(valueString.equalsIgnoreCase("true") || valueString.equalsIgnoreCase("false"));
+                checkArgument("true".equalsIgnoreCase(valueString) || "false".equalsIgnoreCase(valueString));
                 return Boolean.valueOf(valueString);
             }
             if (type.equals(TINYINT) || type.equals(SMALLINT) || type.equals(INTEGER) || type.equals(BIGINT)) {

@@ -116,11 +116,11 @@ public class PostgreSqlClient
     @Override
     public Optional<ReadMapping> toPrestoType(ConnectorSession session, JdbcTypeHandle typeHandle)
     {
-        if (typeHandle.getJdbcTypeName().equals("jsonb") || typeHandle.getJdbcTypeName().equals("json")) {
+        if ("jsonb".equals(typeHandle.getJdbcTypeName()) || "json".equals(typeHandle.getJdbcTypeName())) {
             return Optional.of(jsonColumnMapping());
         }
 
-        else if (typeHandle.getJdbcTypeName().equals("uuid")) {
+        else if ("uuid".equals(typeHandle.getJdbcTypeName())) {
             return Optional.of(uuidColumnMapping());
         }
         return super.toPrestoType(session, typeHandle);

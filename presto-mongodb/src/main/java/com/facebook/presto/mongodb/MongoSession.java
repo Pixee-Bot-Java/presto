@@ -429,7 +429,7 @@ public class MongoSession
         Document metadata = new Document(TABLE_NAME_KEY, tableName);
 
         ArrayList<Document> fields = new ArrayList<>();
-        if (!columns.stream().anyMatch(c -> c.getName().equals("_id"))) {
+        if (!columns.stream().anyMatch(c -> "_id".equals(c.getName()))) {
             fields.add(new MongoColumnHandle("_id", OBJECT_ID, true).getDocument());
         }
 
@@ -482,7 +482,7 @@ public class MongoSession
                 metadata.append(FIELDS_NAME_KEY, key);
                 metadata.append(FIELDS_TYPE_KEY, fieldType.get().toString());
                 metadata.append(FIELDS_HIDDEN_KEY,
-                        key.equals("_id") && fieldType.get().equals(OBJECT_ID.getTypeSignature()));
+                        "_id".equals(key) && fieldType.get().equals(OBJECT_ID.getTypeSignature()));
 
                 builder.add(metadata);
             }

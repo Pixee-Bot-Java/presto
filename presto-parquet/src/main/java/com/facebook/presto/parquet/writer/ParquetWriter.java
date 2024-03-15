@@ -293,22 +293,22 @@ public class ParquetWriter
         if (compressionCodecClass == null) {
             return UNCOMPRESSED;
         }
-        else if (compressionCodecClass.equals("parquet.hadoop.codec.SnappyCodec") || compressionCodecClass.equals("org.apache.parquet.hadoop.codec.SnappyCodec")) {
+        else if ("parquet.hadoop.codec.SnappyCodec".equals(compressionCodecClass) || "org.apache.parquet.hadoop.codec.SnappyCodec".equals(compressionCodecClass)) {
             return SNAPPY;
         }
-        else if (compressionCodecClass.equals("org.apache.hadoop.io.compress.GzipCodec")) {
+        else if ("org.apache.hadoop.io.compress.GzipCodec".equals(compressionCodecClass)) {
             return GZIP;
         }
-        else if (compressionCodecClass.equals("com.hadoop.compression.lzo.LzoCodec")) {
+        else if ("com.hadoop.compression.lzo.LzoCodec".equals(compressionCodecClass)) {
             return LZO;
         }
-        else if (compressionCodecClass.equals("org.apache.hadoop.io.compress.BrotliCodec")) {
+        else if ("org.apache.hadoop.io.compress.BrotliCodec".equals(compressionCodecClass)) {
             return BROTLI;
         }
-        else if (compressionCodecClass.equals("org.apache.hadoop.io.compress.Lz4Codec")) {
+        else if ("org.apache.hadoop.io.compress.Lz4Codec".equals(compressionCodecClass)) {
             return LZ4;
         }
-        else if (compressionCodecClass.equals("org.apache.hadoop.io.compress.ZStandardCodec")) {
+        else if ("org.apache.hadoop.io.compress.ZStandardCodec".equals(compressionCodecClass)) {
             return ZSTD;
         }
         throw new IllegalArgumentException("Invalid compressionCodec: " + compressionCodecClass);

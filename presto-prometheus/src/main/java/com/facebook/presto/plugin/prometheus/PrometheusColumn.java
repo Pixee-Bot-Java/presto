@@ -37,7 +37,7 @@ public class PrometheusColumn
             @JsonProperty("type") Type type)
     {
         checkArgument(!isNullOrEmpty(name), "name is null or is empty");
-        checkArgument((name.equals("labels") || name.equals("timestamp") || name.equals("value")), "column name must be in (\"labels\"), (\"timestamp\"), (\"value\")");
+        checkArgument(("labels".equals(name) || "timestamp".equals(name) || "value".equals(name)), "column name must be in (\"labels\"), (\"timestamp\"), (\"value\")");
         this.name = name;
         this.type = requireNonNull(type, "type is null");
     }

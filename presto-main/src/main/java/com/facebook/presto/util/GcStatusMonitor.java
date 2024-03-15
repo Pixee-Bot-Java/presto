@@ -64,7 +64,7 @@ public class GcStatusMonitor
     public void start()
     {
         for (GarbageCollectorMXBean mbean : ManagementFactory.getGarbageCollectorMXBeans()) {
-            if (mbean.getName().equals("TestingMBeanServer")) {
+            if ("TestingMBeanServer".equals(mbean.getName())) {
                 continue;
             }
 

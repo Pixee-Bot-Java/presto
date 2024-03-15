@@ -360,7 +360,7 @@ public class OrcFileWriterFactory
 
     public KeyProvider toKeyProvider(String keyProviderName)
     {
-        if (keyProviderName.toLowerCase(ENGLISH).equals("crypto")) {
+        if ("crypto".equals(keyProviderName.toLowerCase(ENGLISH))) {
             return CRYPTO_SERVICE;
         }
         return UNKNOWN;

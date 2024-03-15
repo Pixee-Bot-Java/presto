@@ -72,7 +72,7 @@ public class DruidPageSink
                 .withInputSource(dataPath, dataFileList)
                 .withTimestampColumn(TIMESTAMP_COLUMN)
                 .withDimensions(tableHandle.getColumns().stream()
-                        .filter(column -> !column.getColumnName().equals(TIMESTAMP_COLUMN))
+                        .filter(column -> !TIMESTAMP_COLUMN.equals(column.getColumnName()))
                         .map(column -> new DruidIngestTask.DruidIngestDimension(column.getDataType().getIngestType(), column.getColumnName()))
                         .collect(Collectors.toList()))
                 .withAppendToExisting(true)

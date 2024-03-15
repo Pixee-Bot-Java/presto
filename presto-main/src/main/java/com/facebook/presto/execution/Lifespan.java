@@ -73,7 +73,7 @@ public class Lifespan
     @JsonCreator
     public static Lifespan jsonCreator(String value)
     {
-        if (value.equals("TaskWide")) {
+        if ("TaskWide".equals(value)) {
             return Lifespan.taskWide();
         }
         checkArgument(value.startsWith("Group"));

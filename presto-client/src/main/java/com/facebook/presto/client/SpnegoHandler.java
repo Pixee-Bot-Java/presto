@@ -257,7 +257,7 @@ public class SpnegoHandler
             else {
                 fullHostName = address.getCanonicalHostName();
             }
-            if (fullHostName.equalsIgnoreCase("localhost")) {
+            if ("localhost".equalsIgnoreCase(fullHostName)) {
                 throw new ClientException("Fully qualified name of localhost should not resolve to 'localhost'. System configuration error?");
             }
             return fullHostName;

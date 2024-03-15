@@ -308,7 +308,7 @@ class LimitQueryDeterminismAnalyzer
 
     private static boolean isLimitAll(String limitClause)
     {
-        return limitClause.toLowerCase(ENGLISH).equals("all");
+        return "all".equals(limitClause.toLowerCase(ENGLISH));
     }
 
     private static class ColumnNameOrIndex

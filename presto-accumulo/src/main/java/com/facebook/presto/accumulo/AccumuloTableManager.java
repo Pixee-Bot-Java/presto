@@ -61,7 +61,7 @@ public class AccumuloTableManager
     {
         try {
             // If the table schema is not "default" and the namespace does not exist, create it
-            if (!schema.equals(DEFAULT) && !connector.namespaceOperations().exists(schema)) {
+            if (!DEFAULT.equals(schema) && !connector.namespaceOperations().exists(schema)) {
                 connector.namespaceOperations().create(schema);
             }
         }

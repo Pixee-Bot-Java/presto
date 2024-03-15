@@ -83,7 +83,7 @@ public class ExceptionUtils
             String methodName = matcher.group(2);
             String fileName = matcher.group(3);
             int number = -1;
-            if (fileName.equals("Native Method")) {
+            if ("Native Method".equals(fileName)) {
                 fileName = null;
                 number = -2;
             }

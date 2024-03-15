@@ -122,7 +122,7 @@ public class ExceptionWrappingMetadataReader
 
     private OrcCorruptionException propagate(Throwable throwable, String message)
     {
-        if (throwable.getClass().getSimpleName().equals("PrestoException")) {
+        if ("PrestoException".equals(throwable.getClass().getSimpleName())) {
             throw (RuntimeException) throwable;
         }
         return new OrcCorruptionException(throwable, orcDataSourceId, message);
