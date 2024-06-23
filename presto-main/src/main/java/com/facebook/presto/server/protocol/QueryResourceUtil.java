@@ -34,6 +34,8 @@ import com.facebook.presto.spi.function.SqlFunctionId;
 import com.facebook.presto.spi.function.SqlInvokedFunction;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -176,7 +178,7 @@ public final class QueryResourceUtil
     {
         if (xPrestoPrefixUrl != null) {
             try {
-                URL url = new URL(xPrestoPrefixUrl);
+                URL url = Urls.create(xPrestoPrefixUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             }
             catch (java.net.MalformedURLException e) {
                 throw new WebApplicationException(
