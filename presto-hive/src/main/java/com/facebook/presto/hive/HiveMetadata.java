@@ -109,6 +109,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.airlift.slice.Slice;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.LocatedFileStatus;
 import org.apache.hadoop.fs.Path;
@@ -1283,7 +1285,7 @@ public class HiveMetadata
     private String validateAndNormalizeAvroSchemaUrl(String url, HdfsContext context)
     {
         try {
-            new URL(url).openStream().close();
+            Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream().close();
             return url;
         }
         catch (MalformedURLException e) {
