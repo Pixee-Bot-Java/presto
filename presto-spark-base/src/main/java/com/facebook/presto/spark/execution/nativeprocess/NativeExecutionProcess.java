@@ -31,6 +31,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
 import io.airlift.units.Duration;
+import io.github.pixee.security.SystemCommand;
 import org.apache.spark.SparkEnv$;
 import org.apache.spark.SparkFiles;
 
@@ -196,7 +197,7 @@ public class NativeExecutionProcess
         }
         try {
             log.info("Sending signal to process %s: %s", pid, signal);
-            Runtime.getRuntime().exec(format("kill -%s %s", signal, pid));
+            SystemCommand.runCommand(Runtime.getRuntime(), format("kill -%s %s", signal, pid));
         }
         catch (IOException e) {
             log.warn(e, "Failure sending signal to process %s", pid);
