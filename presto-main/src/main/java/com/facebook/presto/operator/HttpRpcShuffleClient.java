@@ -29,6 +29,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import io.airlift.slice.InputStreamSliceInput;
 import io.airlift.slice.SliceInput;
 import io.airlift.units.DataSize;
+import io.github.pixee.security.BoundedLineReader;
 
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -161,7 +162,7 @@ public final class HttpRpcShuffleClient
                     try (BufferedReader reader = new BufferedReader(new InputStreamReader(response.getInputStream(), UTF_8))) {
                         // Get up to 1000 lines for debugging
                         for (int i = 0; i < 1000; i++) {
-                            String line = reader.readLine();
+                            String line = BoundedLineReader.readLine(reader, 5_000_000);
                             // Don't output more than 100KB
                             if (line == null || body.length() + line.length() > 100 * 1024) {
                                 break;
