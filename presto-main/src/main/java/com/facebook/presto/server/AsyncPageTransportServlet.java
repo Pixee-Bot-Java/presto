@@ -26,6 +26,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.airlift.units.DataSize;
 import io.airlift.units.Duration;
+import io.github.pixee.security.Newlines;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -198,11 +199,11 @@ public class AsyncPageTransportServlet
                     @Override
                     public void onSuccess(BufferResult bufferResult)
                     {
-                        response.setHeader(CONTENT_TYPE, PRESTO_PAGES);
-                        response.setHeader(PRESTO_TASK_INSTANCE_ID, bufferResult.getTaskInstanceId());
-                        response.setHeader(PRESTO_PAGE_TOKEN, String.valueOf(bufferResult.getToken()));
-                        response.setHeader(PRESTO_PAGE_NEXT_TOKEN, String.valueOf(bufferResult.getNextToken()));
-                        response.setHeader(PRESTO_BUFFER_COMPLETE, String.valueOf(bufferResult.isBufferComplete()));
+                        response.setHeader(CONTENT_TYPE, Newlines.stripAll(PRESTO_PAGES));
+                        response.setHeader(PRESTO_TASK_INSTANCE_ID, Newlines.stripAll(bufferResult.getTaskInstanceId()));
+                        response.setHeader(PRESTO_PAGE_TOKEN, Newlines.stripAll(String.valueOf(bufferResult.getToken())));
+                        response.setHeader(PRESTO_PAGE_NEXT_TOKEN, Newlines.stripAll(String.valueOf(bufferResult.getNextToken())));
+                        response.setHeader(PRESTO_BUFFER_COMPLETE, Newlines.stripAll(String.valueOf(bufferResult.isBufferComplete())));
 
                         List<SerializedPage> serializedPages = bufferResult.getSerializedPages();
                         if (serializedPages.isEmpty()) {
@@ -213,7 +214,7 @@ public class AsyncPageTransportServlet
                             int contentLength = (serializedPages.size() * PAGE_METADATA_SIZE) + serializedPages.stream()
                                     .mapToInt(SerializedPage::getSizeInBytes)
                                     .sum();
-                            response.setHeader(CONTENT_LENGTH, String.valueOf(contentLength));
+                            response.setHeader(CONTENT_LENGTH, Newlines.stripAll(String.valueOf(contentLength)));
                             out.setWriteListener(new SerializedPageWriteListener(serializedPages, asyncContext, out));
                         }
                     }

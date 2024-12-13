@@ -89,7 +89,7 @@
         <grpc.version>1.35.0</grpc.version>
 
         <air.javadoc.lint>-missing</air.javadoc.lint>
-        <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
+        <versions.java-security-toolkit>1.2.1</versions.java-security-toolkit>
     </properties>
 
     <modules>
@@ -2214,6 +2214,7 @@
             <dependency>
                 <groupId>io.github.pixee</groupId>
                 <artifactId>java-security-toolkit</artifactId>
+                
                 <version>${versions.java-security-toolkit}</version>
             </dependency>
         </dependencies>
