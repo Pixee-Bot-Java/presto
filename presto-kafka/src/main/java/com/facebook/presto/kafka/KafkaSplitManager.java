@@ -27,6 +27,8 @@ import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.CharStreams;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
 import org.apache.kafka.common.Node;
@@ -165,7 +167,7 @@ public class KafkaSplitManager
         try {
             if (isURI(dataSchemaLocation.trim().toLowerCase(ENGLISH))) {
                 try {
-                    inputStream = new URL(dataSchemaLocation).openStream();
+                    inputStream = Urls.create(dataSchemaLocation, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream();
                 }
                 catch (MalformedURLException e) {
                     // try again before failing
