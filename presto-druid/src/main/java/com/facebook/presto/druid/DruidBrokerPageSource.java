@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
+import io.github.pixee.security.BoundedLineReader;
 import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
 import org.joda.time.format.DateTimeFormatter;
@@ -115,7 +116,7 @@ public class DruidBrokerPageSource
                 handle -> ((DruidColumnHandle) handle).getColumnName().equals("errorMessage"));
         try {
             String readLine;
-            while ((readLine = responseStream.readLine()) != null) {
+            while ((readLine = BoundedLineReader.readLine(responseStream, 5_000_000)) != null) {
                 // if read a blank line,it means read finish
                 if (readLine.isEmpty()) {
                     finished = true;

@@ -26,6 +26,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -319,7 +320,7 @@ public class LocalFileRecordCursor
                 if (reader == null) {
                     return null;
                 }
-                String line = reader.readLine();
+                String line = BoundedLineReader.readLine(reader, 5_000_000);
                 if (line != null) {
                     fields = LINE_SPLITTER.splitToList(line);
                     if (!newReader || meetsPredicate(fields)) {

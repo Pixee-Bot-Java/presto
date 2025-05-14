@@ -31,6 +31,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
 import io.airlift.units.Duration;
+import io.github.pixee.security.BoundedLineReader;
 import io.github.pixee.security.SystemCommand;
 import org.apache.spark.SparkEnv$;
 import org.apache.spark.SparkFiles;
@@ -443,7 +444,7 @@ public class NativeExecutionProcess
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, UTF_8))) {
                 String line;
                 boolean aborted = false;
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     if (!aborted && line.startsWith("*** Aborted")) {
                         aborted = true;
                     }
